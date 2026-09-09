@@ -98,10 +98,10 @@ test("spam: a fast re-fire with no smile earns the penalty", () => {
   e.tick(t, 0.2, 0.5, true);
   e.fire(t + 100, 0.2, 0.5, true);
   e.finalize(t + 3100);
-  // re-fire 1 s later: actual preceding gap = 1s < 8s floor, dead lift → -0.15
+  // re-fire 1 s later: actual preceding gap = 1s < the 30s post-seed floor, dead lift → -0.15
   e.tick(t + 3200, 0.2, 0.5, true);
   e.fire(t + 4100, 0.2, 0.5, true);
   e.finalize(t + 7200);
   assert.equal(e.rewardHistory.at(-1), -0.15);
-  assert.ok(RATE_GAPS_MS[0] < 8000, "fastest ladder bucket sits under the spam floor");
+  assert.ok(RATE_GAPS_MS[0] < 30000, "fastest ladder bucket sits under the spam floor");
 });

@@ -19,7 +19,7 @@ export function makeRng(seed) {
 }
 
 // Cadence ladder, front-loaded for spam (user amendment): the two fastest
-// buckets sit under the 8s spam floor, so the rate head feels the -0.15 signal.
+// buckets sit under the 30s spam floor, so the rate head feels the -0.15 signal.
 export const RATE_GAPS_MS = [3000, 5000, 10000, 20000, 40000];
 
 // Defaults sized for 100 memes; every value overridable for tests.

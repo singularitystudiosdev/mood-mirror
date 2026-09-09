@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Mood Mirror — your face, as an emoji</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="app">
+  <header>
+    <h1>Mood Mirror</h1>
+    <p class="tagline">I read the expression on your face and become the emoji for it. Everything runs on this device — no video ever leaves it.</p>
+  </header>
+
+  <section id="intro" class="panel">
+    <div class="emoji-glyphs" aria-hidden="true">😄 😮 😠 😢</div>
+    <p class="pitch">Turn on the camera, make a face, watch the big one copy you. Then it fires memes and sound effects at you and learns which ones actually make you smile.</p>
+    <button id="start" class="primary">Turn on camera</button>
+    <p class="fine">The ~4&nbsp;MB face model ships with this page; it is fetched from the network once only if the local copy is missing. Then everything runs locally at camera speed.</p>
+  </section>
+
+  <section id="loading" class="panel hidden">
+    <div class="spinner" aria-hidden="true"></div>
+    <p id="loading-msg">Waking up the face model…</p>
+    <button id="cancel" class="ghost">Cancel</button>
+  </section>
+
+  <section id="live" class="hidden" aria-live="polite">
+    <div id="emoji-stage">
+      <div id="combo-card" class="hidden">
+        <img id="combo-img" alt="meme the brain picked for you">
+        <span id="combo-sound"></span>
+      </div>
+      <div id="big-emoji" class="pop">😐</div>
+      <div id="mood-label" data-emotion="searching">Looking for a face…</div>
+    </div>
+    <div id="side">
+      <video id="cam" autoplay playsinline muted></video>
+      <ul id="scores" aria-label="Live emotion scores"></ul>
+      <aside id="trainer">
+        <div class="trainer-head">
+          <span>Smile Trainer</span>
+          <button id="trainer-mute" class="ghost" title="Mute sound effects">🔊</button>
+        </div>
+        <div id="trainer-stats">
+          <span id="trainer-score">—</span>
+          <span id="trainer-gap">—</span>
+        </div>
+        <canvas id="trainer-spark" width="320" height="44" aria-label="reward per combo"></canvas>
+        <ul id="trainer-top" aria-label="memes your brain likes best"></ul>
+        <p id="trainer-status" class="fine">loading memes…</p>
+      </aside>
+      <div id="side-foot">
+        <span id="status">—</span>
+        <button id="stop" class="ghost">Stop camera</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="error" class="panel hidden">
+    <div class="emoji-glyphs" aria-hidden="true">📷 🚫</div>
+    <p id="error-msg"></p>
+    <button id="retry" class="primary">Try again</button>
+  </section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
